@@ -8,11 +8,12 @@ TagManager:
   - Button1
   - Button2
   - Button3
+  - Target
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Target
   - Water
   - UI
   - 
