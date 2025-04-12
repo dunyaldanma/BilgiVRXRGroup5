@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
-public class CLOWN74 : MonoBehaviour
+public class M1911 : MonoBehaviour
 {
     LayerMask layerMask;
     [SerializeField] GameObject bullet;
@@ -40,9 +40,9 @@ public class CLOWN74 : MonoBehaviour
         miliseconds += Time.deltaTime * 1000;
         Debug.Log(miliseconds);
 
-        if (miliseconds > 100)
+        if (miliseconds > 500)
         {
-            miliseconds -= 100;
+            miliseconds -= 500;
             if (onTarget)
             {
                 GameObject projectile;
