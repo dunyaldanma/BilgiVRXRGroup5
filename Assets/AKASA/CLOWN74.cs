@@ -1,17 +1,27 @@
-using UnityEngine;
-using UnityEngine.InputSystem.Controls;
+﻿using UnityEngine;
+using static UnityEngine.ParticleSystem;
+using System.Collections;
 
 public class CLOWN74 : MonoBehaviour
 {
     LayerMask layerMask;
+    AudioSource audioSource;
+
     [SerializeField] GameObject bullet;
     bool onTarget;
     float miliseconds;
+
     [SerializeField] LineRenderer rayLine;
     [SerializeField] Transform rayEnd;
+    [SerializeField] GameObject bulletHolePrefab;
+    [SerializeField] GameObject muzzle;
+    [SerializeField] AudioClip Shoot;
+
     void Awake()
     {
         layerMask = LayerMask.GetMask("Target");
+        muzzle.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -22,6 +32,13 @@ public class CLOWN74 : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
             onTarget = true;
+
+            if (bulletHolePrefab != null)
+            {
+                GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                hole.transform.position += hole.transform.forward * 0.001f;
+                hole.transform.SetParent(hit.collider.transform);
+            }
         }
         else
         {
@@ -38,7 +55,6 @@ public class CLOWN74 : MonoBehaviour
         rayLine.SetPosition(1, rayEnd.position);
 
         miliseconds += Time.deltaTime * 1000;
-        Debug.Log(miliseconds);
 
         if (miliseconds > 100)
         {
@@ -48,7 +64,29 @@ public class CLOWN74 : MonoBehaviour
                 GameObject projectile;
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
+
+                StartCoroutine(FlashMuzzle());
+                StartCoroutine(SoundFX());
+            }
+            else
+            {
+
             }
         }
+        if(onTarget)
+        {
+        }
+    }
+    private IEnumerator FlashMuzzle()
+    {
+        muzzle.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
+        muzzle.SetActive(false);
+    }
+
+    private IEnumerator SoundFX()
+    {
+        audioSource.PlayOneShot(Shoot);
+        yield return new WaitForSeconds(0.5f);
     }
 }
