@@ -405,7 +405,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Weapon Color
+  m_text: Set Control
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 942d72174d27c5b408f30a1c51a8c5e1, type: 2}
   m_sharedMaterial: {fileID: 1137769428976786280, guid: 942d72174d27c5b408f30a1c51a8c5e1, type: 2}
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Red
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 942d72174d27c5b408f30a1c51a8c5e1, type: 2}
   m_sharedMaterial: {fileID: 1137769428976786280, guid: 942d72174d27c5b408f30a1c51a8c5e1, type: 2}
@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 160792007}
   - component: {fileID: 160792008}
   m_Layer: 5
-  m_Name: "Button K\u0131rm\u0131z\u0131"
+  m_Name: Button Play
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1816,7 +1816,7 @@ GameObject:
   - component: {fileID: 368108227}
   - component: {fileID: 368108226}
   m_Layer: 0
-  m_Name: Panel (1)
+  m_Name: Panel weapon color
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3805,7 +3805,7 @@ GameObject:
   - component: {fileID: 972596961}
   - component: {fileID: 972596960}
   m_Layer: 0
-  m_Name: Panel
+  m_Name: Panel set control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3897,7 +3897,8 @@ Transform:
   m_LocalPosition: {x: 0.039000273, y: 1.665, z: -4.693}
   m_LocalScale: {x: 0.03402525, y: 0.64645, z: 0.64645}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1601613047}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &975284264
@@ -5343,7 +5344,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Green
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 942d72174d27c5b408f30a1c51a8c5e1, type: 2}
   m_sharedMaterial: {fileID: 1137769428976786280, guid: 942d72174d27c5b408f30a1c51a8c5e1, type: 2}
@@ -7377,7 +7378,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 972596963}
     m_Modifications:
     - target: {fileID: 837758625880512014, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
       propertyPath: m_Name
@@ -7548,16 +7549,28 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.54691
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.54691
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 29.389942
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.752
+      value: 79.73491
       objectReference: {fileID: 0}
     - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.654
+      value: 3.0768042
       objectReference: {fileID: 0}
     - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.799
+      value: -1.7108824
       objectReference: {fileID: 0}
     - target: {fileID: 7073559159299359699, guid: 3f42fd49e27df314f95a34cbfb29625e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7622,7 +7635,7 @@ GameObject:
   - component: {fileID: 1811564002}
   - component: {fileID: 1811564003}
   m_Layer: 5
-  m_Name: "Button Ye\u015Fil"
+  m_Name: Button Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7822,7 +7835,7 @@ GameObject:
   - component: {fileID: 1851771635}
   - component: {fileID: 1851771636}
   m_Layer: 5
-  m_Name: Button Mavi
+  m_Name: Button Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9850,7 +9863,6 @@ SceneRoots:
   - {fileID: 1353738190}
   - {fileID: 972596963}
   - {fileID: 368108229}
-  - {fileID: 1806451155}
   - {fileID: 1913044837}
   - {fileID: 1230223757}
   - {fileID: 1219081476}
