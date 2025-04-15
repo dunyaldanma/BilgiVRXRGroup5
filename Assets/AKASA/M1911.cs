@@ -17,6 +17,8 @@ public class M1911 : MonoBehaviour
     [SerializeField] GameObject muzzle;
     [SerializeField] AudioClip Shoot;
 
+    int hitAmount = 0;
+
     void Awake()
     {
         layerMask = LayerMask.GetMask("Target");
@@ -33,11 +35,12 @@ public class M1911 : MonoBehaviour
             Debug.Log("Did Hit");
             onTarget = true;
 
-            if (bulletHolePrefab != null)
+            if (bulletHolePrefab != null && hitAmount > 0)
             {
                 GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
                 hole.transform.position += hole.transform.forward * 0.001f;
                 hole.transform.SetParent(hit.collider.transform);
+                hitAmount--;
             }
         }
         else
@@ -61,6 +64,7 @@ public class M1911 : MonoBehaviour
             miliseconds -= 500;
             if (onTarget)
             {
+                hitAmount++;
                 GameObject projectile;
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
