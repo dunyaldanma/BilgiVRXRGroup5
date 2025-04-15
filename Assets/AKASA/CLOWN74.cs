@@ -33,6 +33,7 @@ public class CLOWN74 : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
+            muzzle.SetActive(true);
             onTarget = true;
 
             if (bulletHolePrefab != null && hitAmount > 0)
@@ -48,6 +49,7 @@ public class CLOWN74 : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * 1000, Color.white);
             Debug.Log("Did not Hit");
             onTarget = false;
+            muzzle.SetActive(false);
         }
     }
 
@@ -68,8 +70,7 @@ public class CLOWN74 : MonoBehaviour
                 GameObject projectile;
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
-
-                StartCoroutine(FlashMuzzle());
+                //StartCoroutine(FlashMuzzle());
                 StartCoroutine(SoundFX());
             }
             else
@@ -83,12 +84,12 @@ public class CLOWN74 : MonoBehaviour
     }
 
 
-    private IEnumerator FlashMuzzle()
-    {
-        muzzle.SetActive(true);
-        yield return new WaitForSeconds(0.9f);
-        muzzle.SetActive(false);
-    }
+    //private IEnumerator FlashMuzzle()
+    //{
+        //muzzle.SetActive(true);
+        //yield return new WaitForSeconds(0.9f);
+        //muzzle.SetActive(false);
+    //}
 
     private IEnumerator SoundFX()
     {
