@@ -2780,11 +2780,6 @@ MonoBehaviour:
   _outlineColor: {r: 0, g: 0, b: 0, a: 1}
   _offsetAlongNormal: 0.005
   _playerHead: {fileID: 0}
---- !u!1 &755324699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8408983097926763096, guid: 7da7885756536ef428f3567daa72e9d7, type: 3}
-  m_PrefabInstance: {fileID: 956553974}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &756861727
 GameObject:
   m_ObjectHideFlags: 0
@@ -3559,10 +3554,6 @@ PrefabInstance:
     - target: {fileID: 8408983097926763096, guid: 7da7885756536ef428f3567daa72e9d7, type: 3}
       propertyPath: m_Name
       value: CLOWN74 MUZZLE
-      objectReference: {fileID: 0}
-    - target: {fileID: 8408983097926763096, guid: 7da7885756536ef428f3567daa72e9d7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9881,7 +9872,7 @@ PrefabInstance:
     - target: {fileID: 7426704018103901202, guid: 81d561bd0e7a1d54babdf8fdbc071839, type: 3}
       propertyPath: muzzle
       value: 
-      objectReference: {fileID: 755324699}
+      objectReference: {fileID: 8408983097926763096, guid: 7da7885756536ef428f3567daa72e9d7, type: 3}
     - target: {fileID: 7426704018103901202, guid: 81d561bd0e7a1d54babdf8fdbc071839, type: 3}
       propertyPath: m_Enabled
       value: 1
