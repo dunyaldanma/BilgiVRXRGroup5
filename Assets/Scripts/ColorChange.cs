@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -12,5 +13,11 @@ public class ColorChange : MonoBehaviour
 
 
         targetMaterial.SetColor("_BaseColor", colorToApply);
+    }
+
+    public void ReloadCurrentScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }
