@@ -11,6 +11,8 @@ public class CLOWN74 : MonoBehaviour
     bool onTarget;
     float miliseconds;
 
+    [SerializeField] GameObject magg;
+
     [SerializeField] LineRenderer rayLine;
     [SerializeField] Transform rayEnd;
     [SerializeField] GameObject bulletHolePrefab;
@@ -19,15 +21,17 @@ public class CLOWN74 : MonoBehaviour
     public MagBulletCount mbc;
     int hitAmount = 0;
     public int bulletAmount;
+    float childcountx;
 
     void Awake()
     {
         layerMask = LayerMask.GetMask("Target");
         muzzle.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        childcountx = magg.transform.childCount;
     }
 
-    void Start()
+    void OnEnable()
     {
         mbc = GetComponentInChildren<MagBulletCount>();
         if (mbc == null) return;
@@ -59,6 +63,11 @@ public class CLOWN74 : MonoBehaviour
 
     void Update()
     {
+        if (magg.transform.childCount == 0f)
+        {
+            bulletAmount = 0;
+            this.enabled = false    ;
+        }
         rayLine.enabled = true;
         rayLine.SetPosition(0, transform.position);
         rayLine.SetPosition(1, rayEnd.position);

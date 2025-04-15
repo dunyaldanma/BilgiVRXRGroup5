@@ -17742,6 +17742,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 7426704018103901202, guid: 81d561bd0e7a1d54babdf8fdbc071839, type: 3}
+      propertyPath: magg
+      value: 
+      objectReference: {fileID: 900190054}
+    - target: {fileID: 7426704018103901202, guid: 81d561bd0e7a1d54babdf8fdbc071839, type: 3}
       propertyPath: Shoot
       value: 
       objectReference: {fileID: 8300000, guid: 0addcc409a57b4a43b86a3d2310ac5b4, type: 3}
