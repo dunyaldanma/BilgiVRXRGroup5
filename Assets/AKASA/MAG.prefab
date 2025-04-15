@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5273575933094364250}
   - component: {fileID: 4626701394555382420}
   - component: {fileID: 6198293825534875238}
+  - component: {fileID: -5564471073728716188}
   m_Layer: 0
   m_Name: MAG
   m_TagString: Untagged
@@ -151,6 +152,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50886efa84b72414ab5075e11e74b5d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5564471073728716188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641591668867029227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afe92a1bd981a5c488bfe2e1ddda412d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magMaxbullet: 30
+  magMinbullet: 0
+  magBullet: 30
 --- !u!1 &8891775086500764358
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,8 +16,9 @@ public class CLOWN74 : MonoBehaviour
     [SerializeField] GameObject bulletHolePrefab;
     [SerializeField] GameObject muzzle;
     [SerializeField] AudioClip Shoot;
-
+    public MagBulletCount mbc;
     int hitAmount = 0;
+    public int bulletAmount;
 
     void Awake()
     {
@@ -26,6 +27,11 @@ public class CLOWN74 : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    void Start()
+    {
+        mbc = GetComponentInChildren<MagBulletCount>();
+        if (mbc == null) return;
+    }
     void FixedUpdate()
     {
         RaycastHit hit;
@@ -65,10 +71,11 @@ public class CLOWN74 : MonoBehaviour
             if (onTarget)
             {
                 hitAmount++;
+                bulletAmount--;
                 GameObject projectile;
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
-
+                mbc.CurrentBullet(bulletAmount);
                 StartCoroutine(FlashMuzzle());
                 StartCoroutine(SoundFX());
             }
@@ -94,5 +101,10 @@ public class CLOWN74 : MonoBehaviour
     {
         audioSource.PlayOneShot(Shoot);
         yield return new WaitForSeconds(0.5f);
+    }
+
+    public void BulletCheck(int bullet)
+    {
+        bulletAmount = bullet;
     }
 }
