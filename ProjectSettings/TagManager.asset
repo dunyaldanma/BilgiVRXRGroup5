@@ -10,6 +10,7 @@ TagManager:
   - Button3
   - Target
   - MagPlace
+  - Climbable
   layers:
   - Default
   - TransparentFX
