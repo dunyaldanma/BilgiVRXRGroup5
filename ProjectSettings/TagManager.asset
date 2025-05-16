@@ -4,16 +4,13 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Button0
+  - Button1
+  - Button2
+  - Button3
   - Target
   - MagPlace
-  - BluePoke
-  - GreenPoke
-  - RedPoke
-  - YellowPoke
-  - MagPoke
-  - HighDifficultyPoke
-  - LowDifficultyPoke
-  - RestartPoke
+  - Climbable
   layers:
   - Default
   - TransparentFX
