@@ -7,8 +7,8 @@ public class RealHandLoc : MonoBehaviour
     public Transform leftHandTransform;
     public Transform rightHandTransform;
     public Rigidbody bodyRigidbody;
-    public HandCollisionDetector leftHandDetector;
-    public HandCollisionDetector rightHandDetector;
+    [SerializeField] GameObject leftHandDetector;
+    [SerializeField] GameObject rightHandDetector;
     public PlayerEnergy playerEnergy; // new
     public float energyPerMove = 5f; // new
     private float energyDrainCooldown = 1f; // Consume energy once per second

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d394ae2a81edd4cbc3c51917e766e3, type: 3}
   m_Name: OculusProjectConfig
   m_EditorClassIdentifier: 
-  targetDeviceTypes: 0100000002000000030000000400000005000000
+  targetDeviceTypes: 010000000200000003000000
   allowOptional3DofHeadTracking: 0
-  handTrackingSupport: 1
+  handTrackingSupport: 0
   handTrackingFrequency: 0
-  handTrackingVersion: 2
-  anchorSupport: 1
+  handTrackingVersion: 0
+  anchorSupport: 0
   sharedAnchorSupport: 0
   renderModelSupport: 0
   trackedKeyboardSupport: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   faceTrackingSupport: 0
   eyeTrackingSupport: 0
   virtualKeyboardSupport: 0
-  sceneSupport: 2
+  sceneSupport: 0
   boundaryVisibilitySupport: 0
   disableBackups: 1
   enableNSCConfig: 1
@@ -40,15 +40,6 @@ MonoBehaviour:
   _processorFavor: 0
   systemSplashScreen: {fileID: 0}
   systemSplashScreenType: 0
-<<<<<<< Updated upstream
   _systemLoadingScreenBackground: 0
-  ovrPluginMd5Win64: 33685b25e1b4f2b6c1632069bc8878365e04a18eb4098e2abcbb3b84ef2b9264
-  ovrPluginMd5Android: b9e59102e373e2d7a97cd1dbe38cac15b206570ec6380fdd28fd0c2b79c63e0c
-=======
-  _systemLoadingScreenBackground: 1
-  ovrPluginMd5Win64: 33685b25e1b4f2b6c1632069bc8878364dfd0411b3e803a22d76dc2635ae3062
-  ovrPluginMd5Android: b9e59102e373e2d7a97cd1dbe38cac15f1aabb7e993ecae66d76b6dab6f69b27
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  ovrPluginMd5Win64: 33685b25e1b4f2b6c1632069bc8878362224559c40a5111eee95655f58fcf434
+  ovrPluginMd5Android: b9e59102e373e2d7a97cd1dbe38cac157e4c40edfdc5b21aa7e60833b6516b72
