@@ -11,21 +11,31 @@ public class CLOWN74 : MonoBehaviour
     bool onTarget;
     float miliseconds;
 
+    [SerializeField] GameObject magg;
+
     [SerializeField] LineRenderer rayLine;
     [SerializeField] Transform rayEnd;
     [SerializeField] GameObject bulletHolePrefab;
     [SerializeField] GameObject muzzle;
     [SerializeField] AudioClip Shoot;
-
+    public MagBulletCount mbc;
     int hitAmount = 0;
+    public int bulletAmount;
+    float childcountx;
 
     void Awake()
     {
         layerMask = LayerMask.GetMask("Target");
         muzzle.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        childcountx = magg.transform.childCount;
     }
 
+    void OnEnable()
+    {
+        mbc = GetComponentInChildren<MagBulletCount>();
+        if (mbc == null) return;
+    }
     void FixedUpdate()
     {
         RaycastHit hit;
@@ -33,7 +43,6 @@ public class CLOWN74 : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            muzzle.SetActive(true);
             onTarget = true;
 
             if (bulletHolePrefab != null && hitAmount > 0)
@@ -49,12 +58,16 @@ public class CLOWN74 : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * 1000, Color.white);
             Debug.Log("Did not Hit");
             onTarget = false;
-            muzzle.SetActive(false);
         }
     }
 
     void Update()
     {
+        if (magg.transform.childCount == 0f || bulletAmount <= 0)
+        {
+            bulletAmount = 0;
+            this.enabled = false;
+        }
         rayLine.enabled = true;
         rayLine.SetPosition(0, transform.position);
         rayLine.SetPosition(1, rayEnd.position);
@@ -64,13 +77,16 @@ public class CLOWN74 : MonoBehaviour
         if (miliseconds > 100)
         {
             miliseconds -= 100;
-            if (onTarget)
+            if (onTarget && bulletAmount > 0)
             {
+                Debug.Log("hit");
                 hitAmount++;
+                bulletAmount--;
                 GameObject projectile;
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
-                //StartCoroutine(FlashMuzzle());
+                mbc.CurrentBullet(bulletAmount);
+                StartCoroutine(FlashMuzzle());
                 StartCoroutine(SoundFX());
             }
             else
@@ -78,22 +94,27 @@ public class CLOWN74 : MonoBehaviour
 
             }
         }
-        if(onTarget)
+        if (onTarget)
         {
         }
     }
 
 
-    //private IEnumerator FlashMuzzle()
-    //{
-        //muzzle.SetActive(true);
-        //yield return new WaitForSeconds(0.9f);
-        //muzzle.SetActive(false);
-    //}
+    private IEnumerator FlashMuzzle()
+    {
+        muzzle.SetActive(true);
+        yield return new WaitForSeconds(0.9f);
+        muzzle.SetActive(false);
+    }
 
     private IEnumerator SoundFX()
     {
         audioSource.PlayOneShot(Shoot);
         yield return new WaitForSeconds(0.5f);
+    }
+
+    public void BulletCheck(int bullet)
+    {
+        bulletAmount = bullet;
     }
 }

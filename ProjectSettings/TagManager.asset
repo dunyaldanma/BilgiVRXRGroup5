@@ -11,6 +11,8 @@ TagManager:
   - Target
   - MagPlace
   - Climbable
+  - Gun
+  - Plank
   layers:
   - Default
   - TransparentFX
