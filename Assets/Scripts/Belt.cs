@@ -4,6 +4,7 @@ public class Belt : MonoBehaviour
 {
     public float size = 0.1f;
     [SerializeField] Transform plankPos;
+    [SerializeField] Transform gunPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +22,9 @@ public class Belt : MonoBehaviour
         {
             Rigidbody rb = other.GetComponent<Rigidbody>();
             rb.isKinematic = true;
-            other.transform.parent = this.transform;
+            other.transform.parent = gunPos.transform;
+            other.transform.position = gunPos.position;
+            other.transform.rotation = gunPos.rotation;
 
         }
         else if (other.gameObject.GetComponent("Plank")!= null)
