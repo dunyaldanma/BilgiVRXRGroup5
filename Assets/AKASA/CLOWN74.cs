@@ -63,7 +63,7 @@ public class CLOWN74 : MonoBehaviour
 
     void Update()
     {
-        if (magg.transform.childCount == 0f)
+        if (magg.transform.childCount == 0f || bulletAmount <=0)
         {
             bulletAmount = 0;
             this.enabled = false    ;
@@ -77,8 +77,9 @@ public class CLOWN74 : MonoBehaviour
         if (miliseconds > 100)
         {
             miliseconds -= 100;
-            if (onTarget)
+            if (onTarget&& bulletAmount>0)
             {
+                Debug.Log("hit");
                 hitAmount++;
                 bulletAmount--;
                 GameObject projectile;
