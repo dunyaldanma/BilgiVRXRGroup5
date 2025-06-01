@@ -12,13 +12,15 @@ public class Mag : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         mbc = GetComponent<MagBulletCount>();
     }
+    
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("MagPlace"))
         {
             A = true;
-            rb.isKinematic = true;
+            //rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             mbc.enabled = true;
             transform.position = other.transform.position;
             this.transform.parent = other.transform;
@@ -40,7 +42,8 @@ public class Mag : MonoBehaviour
                 cl = null;
             }
             A = false;
-            rb.isKinematic = false;
+            //rb.isKinematic = false;
+            rb.constraints = RigidbodyConstraints.None;
             transform.parent = null;
         }
 

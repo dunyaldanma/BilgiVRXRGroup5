@@ -4,13 +4,21 @@ using System.Collections;
 
 public class CLOWN74 : MonoBehaviour
 {
+    public float Damage = 10f;
+    public float Range = 100f;
+    public float impactF = 30f;
+    public float fireR = 15f;
+    private float nTTF = 0f;
+
+
+    public bool controllerActive = false;
+
     LayerMask layerMask;
     AudioSource audioSource;
 
     [SerializeField] GameObject bullet;
     bool onTarget;
     float miliseconds;
-
     [SerializeField] GameObject magg;
 
     [SerializeField] LineRenderer rayLine;
@@ -38,13 +46,20 @@ public class CLOWN74 : MonoBehaviour
     }
     void FixedUpdate()
     {
+        
+        if (controllerActive) { return; }
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward * -1), out hit, Mathf.Infinity, layerMask))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
             onTarget = true;
-
+            /*
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(-hit.normal * impactF);
+            }
+            */
             if (bulletHolePrefab != null && hitAmount > 0)
             {
                 GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
@@ -56,27 +71,63 @@ public class CLOWN74 : MonoBehaviour
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * -1) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+            //Debug.Log("Did not Hit");
             onTarget = false;
+        }
+    }
+
+
+    void Shooting()
+    {
+        if (!controllerActive) { return; }
+        float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+        if(triggerValue > 0.1f && Time.time >= nTTF && bulletAmount > 0)
+        {
+            bulletAmount--;
+            mbc.CurrentBullet(bulletAmount);
+            nTTF = Time.time + 1f / fireR;
+            ShootReal();
+            Debug.Log("bruhmoment");    
+        }
+    }
+    private void ShootReal()
+    {
+
+
+        RaycastHit Hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward * -1), out Hit, Range))
+        {
+            EnemyHp enemyHp = Hit.transform.GetComponent<EnemyHp>();
+            if (enemyHp != null)
+            {
+                enemyHp.TakeDamage(Damage);
+            }
+
+            if (Hit.rigidbody != null)
+            {
+                Hit.rigidbody.AddForce(-Hit.normal * impactF);
+            }
         }
     }
 
     void Update()
     {
-        if (magg.transform.childCount == 0f || bulletAmount <= 0)
+        
+        if (magg.transform.childCount == 0f)
         {
             bulletAmount = 0;
             this.enabled = false;
         }
+        Shooting();
         rayLine.enabled = true;
         rayLine.SetPosition(0, transform.position);
         rayLine.SetPosition(1, rayEnd.position);
 
         miliseconds += Time.deltaTime * 1000;
 
-        if (miliseconds > 100)
+        if (miliseconds > 500)
         {
-            miliseconds -= 100;
+            miliseconds -= 500;
             if (onTarget && bulletAmount > 0)
             {
                 Debug.Log("hit");
