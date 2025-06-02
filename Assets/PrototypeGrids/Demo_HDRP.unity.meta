@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e504eea5ece6a5c458d3029edd1dc631
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194586
+  packageName: Customize Prototype Grid Shader (HDRP, URP)
+  packageVersion: 1.0
+  assetPath: Assets/PrototypeGrids/Demo_HDRP.unity
+  uploadId: 431277

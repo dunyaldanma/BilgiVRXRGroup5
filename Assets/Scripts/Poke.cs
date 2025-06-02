@@ -3,10 +3,14 @@ using UnityEngine;
 public class Poke : MonoBehaviour
 {
 
-    public bool Button0 = false;
-    public bool Button1 = false;
-    public bool Button2 = false;
-    public bool Button3 = false;
+    public bool bluePoke = false;
+    public bool greenPoke = false;
+    public bool redPoke = false;
+    public bool yellowPoke = false;
+    public bool magPoke = false;
+    public bool highDifficultyPoke = false;
+    public bool lowDifficultyPoke = false;
+    public bool restartPoke = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,60 +21,31 @@ public class Poke : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(bluePoke);
+        Debug.Log(greenPoke);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Button0")
+        if (gameObject.CompareTag("BluePoke"))
         {
-            Debug.Log("BUTTON 0 ENTER");
-            Button0 = true;
+            bluePoke = true;
         }
-        
-        if (gameObject.tag == "Button1")
+        if (gameObject.CompareTag("GreenPoke"))
         {
-            Debug.Log("BUTTON 1 ENTER");
-            Button1 = true;
-        }
-        
-        if (gameObject.tag == "Button2")
-        {
-            Debug.Log("BUTTON 2 ENTER");
-            Button2 = true;
-        }
-        
-        if (gameObject.tag == "Button3")
-        {
-            Debug.Log("BUTTON 3 ENTER");
-            Button3 = true;
+            greenPoke = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (gameObject.tag == "Button0")
+        if (gameObject.CompareTag("BluePoke"))
         {
-            Debug.Log("BUTTON 0 RELEASE");
-            Button0 = false;
+            bluePoke = false;
         }
-
-        if (gameObject.tag == "Button1")
+        if (gameObject.CompareTag("GreenPoke"))
         {
-            Debug.Log("BUTTON 1 RELEASE");
-            Button1 = false;
-        }
-
-        if (gameObject.tag == "Button2")
-        {
-            Debug.Log("BUTTON 2 RELEASE");
-            Button2 = false;
-        }
-
-        if (gameObject.tag == "Button3")
-        {
-            Debug.Log("BUTTON 3 RELEASE");
-            Button3 = false;
+            greenPoke = false;
         }
     }
 }
