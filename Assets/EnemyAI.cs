@@ -78,11 +78,7 @@ public class EnemyAI : MonoBehaviour
         {
             isAttack = true;
             StartCoroutine(Attack());
-            if (Time.time >= nTTF)
-            {
-                nTTF = Time.time + 1f / fireR;
-                Damager();
-            }
+            
         }
         
 
@@ -120,9 +116,5 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(1);
     }
 
-    public void Damager()
-    {
-        health.GetDamage(damage);
-        Debug.Log("damage");
-    }
+
 }

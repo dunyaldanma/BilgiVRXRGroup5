@@ -24,7 +24,7 @@ public class CLOWN74 : MonoBehaviour
     [SerializeField] LineRenderer rayLine;
     [SerializeField] Transform rayEnd;
     [SerializeField] GameObject bulletHolePrefab;
-    [SerializeField] GameObject muzzle;
+    [SerializeField] ParticleSystem muzzle, mzz1, mzz2;
     [SerializeField] AudioClip Shoot;
     public MagBulletCount mbc;
     int hitAmount = 0;
@@ -34,7 +34,7 @@ public class CLOWN74 : MonoBehaviour
     void Awake()
     {
         layerMask = LayerMask.GetMask("Target");
-        muzzle.SetActive(false);
+        //muzzle.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         childcountx = magg.transform.childCount;
     }
@@ -87,6 +87,9 @@ public class CLOWN74 : MonoBehaviour
             mbc.CurrentBullet(bulletAmount);
             nTTF = Time.time + 1f / fireR;
             ShootReal();
+            muzzle.Play();
+            mzz1.Play();
+            mzz2.Play();
             Debug.Log("bruhmoment");    
         }
     }
@@ -95,7 +98,7 @@ public class CLOWN74 : MonoBehaviour
 
 
         RaycastHit Hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward * -1), out Hit, Range))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward * -1), out Hit, Range, layerMask))
         {
             EnemyHp enemyHp = Hit.transform.GetComponent<EnemyHp>();
             if (enemyHp != null)
@@ -137,7 +140,7 @@ public class CLOWN74 : MonoBehaviour
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
                 mbc.CurrentBullet(bulletAmount);
-                StartCoroutine(FlashMuzzle());
+                //StartCoroutine(FlashMuzzle());
                 StartCoroutine(SoundFX());
             }
             else
@@ -151,12 +154,12 @@ public class CLOWN74 : MonoBehaviour
     }
 
 
-    private IEnumerator FlashMuzzle()
+    /*private IEnumerator FlashMuzzle()
     {
         muzzle.SetActive(true);
         yield return new WaitForSeconds(0.9f);
         muzzle.SetActive(false);
-    }
+    }*/
 
     private IEnumerator SoundFX()
     {

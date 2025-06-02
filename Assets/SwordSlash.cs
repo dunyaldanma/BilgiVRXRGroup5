@@ -35,4 +35,19 @@ public class SwordSlash : MonoBehaviour
     {
         this.transform.parent = null;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Animator animator = this.transform.root.GetComponent<Animator>();
+            if (OVRInput.Get(OVRInput.Button.Back)) 
+            {
+                if (animator != null)
+                {
+                    animator.enabled = false;
+                }
+
+            }
+        }
+    }
 }
