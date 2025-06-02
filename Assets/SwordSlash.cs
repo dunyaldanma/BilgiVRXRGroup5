@@ -15,7 +15,15 @@ public class SwordSlash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Animator animator = this.transform.root.GetComponent<Animator>();
+        Rigidbody rb = this.GetComponent<Rigidbody>();
+        if (rb.isKinematic == true)
+        {
+            if (animator != null)
+            {
+                animator.enabled = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,7 +48,7 @@ public class SwordSlash : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Animator animator = this.transform.root.GetComponent<Animator>();
-            if (OVRInput.Get(OVRInput.Button.Back)) 
+            if (OVRInput.Get(OVRInput.RawButton.RHandTrigger) || OVRInput.Get(OVRInput.RawButton.LHandTrigger)) 
             {
                 if (animator != null)
                 {
