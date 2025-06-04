@@ -3,8 +3,8 @@ using UnityEngine;
 public class Belt : MonoBehaviour
 {
     public float size = 0.1f;
-    [SerializeField] Transform plankPos;
-    [SerializeField] Transform gunPos;
+    [SerializeField] Transform plankPos, gunPos, magPos, katPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,6 +37,24 @@ public class Belt : MonoBehaviour
             other.transform.position = plankPos.position;
             other.transform.parent = this.transform;
         }
+        else if (other.gameObject.GetComponent("Mag") != null)
+        {
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            //rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            other.transform.position = magPos.position;
+            other.transform.parent = this.transform;
+        }
+        else if (other.CompareTag("Sword"))
+        {
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            //rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            other.transform.parent = katPos.transform;
+            other.transform.position = katPos.position;
+            other.transform.rotation = katPos.rotation;
+
+        }
 
     }
     private void OnTriggerExit(Collider other)
@@ -60,6 +78,26 @@ public class Belt : MonoBehaviour
             
             other.transform.parent = null;
             rb = null;
+        }
+        else if (other.CompareTag("Mag"))
+        {
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            //rb.isKinematic = false;
+            rb.constraints = RigidbodyConstraints.None;
+            other.transform.parent = null;
+            rb = null;
+
+
+        }
+        else if (other.CompareTag("Sword"))
+        {
+            Rigidbody rb = other.GetComponent<Rigidbody>();
+            //rb.isKinematic = false;
+            rb.constraints = RigidbodyConstraints.None;
+            other.transform.parent = null;
+            rb = null;
+
+
         }
     }
 }

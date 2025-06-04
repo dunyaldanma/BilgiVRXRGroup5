@@ -11,7 +11,7 @@ public class CLOWN74 : MonoBehaviour
     private float nTTF = 0f;
 
 
-    public bool controllerActive = false;
+    public bool controllerActive = false, isHeld = false;
 
     LayerMask layerMask;
     AudioSource audioSource;
@@ -79,19 +79,26 @@ public class CLOWN74 : MonoBehaviour
 
     void Shooting()
     {
-        if (!controllerActive) { return; }
-        float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
-        if(triggerValue > 0.1f && Time.time >= nTTF && bulletAmount > 0)
-        {
-            bulletAmount--;
-            mbc.CurrentBullet(bulletAmount);
-            nTTF = Time.time + 1f / fireR;
-            ShootReal();
-            muzzle.Play();
-            mzz1.Play();
-            mzz2.Play();
-            Debug.Log("bruhmoment");    
+        if (!isHeld) 
+        { 
+            return; 
         }
+        else
+        {
+            float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+                    if(triggerValue > 0.1f && Time.time >= nTTF && bulletAmount > 0)
+                    {
+                        bulletAmount--;
+                        mbc.CurrentBullet(bulletAmount);
+                        nTTF = Time.time + 1f / fireR;
+                        ShootReal();
+                        muzzle.Play();
+                        mzz1.Play();
+                        mzz2.Play();
+                        Debug.Log("bruhmoment");    
+                    }
+        }
+        
     }
     private void ShootReal()
     {
@@ -121,8 +128,15 @@ public class CLOWN74 : MonoBehaviour
             bulletAmount = 0;
             this.enabled = false;
         }
+        Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
+        if (rb.isKinematic)
+        {
+            isHeld = true;
+        }
+        else 
+        { isHeld = false; }
         Shooting();
-        rayLine.enabled = true;
+        rayLine.enabled = isHeld;
         rayLine.SetPosition(0, transform.position);
         rayLine.SetPosition(1, rayEnd.position);
 
@@ -161,6 +175,7 @@ public class CLOWN74 : MonoBehaviour
         muzzle.SetActive(false);
     }*/
 
+    
     private IEnumerator SoundFX()
     {
         audioSource.PlayOneShot(Shoot);

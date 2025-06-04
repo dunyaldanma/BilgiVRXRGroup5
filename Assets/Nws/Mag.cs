@@ -25,6 +25,7 @@ public class Mag : MonoBehaviour
             transform.position = other.transform.position;
             this.transform.parent = other.transform;
             this.transform.rotation = other.transform.rotation;
+            this.tag = "MagInPlace";
             cl = GetComponentInParent<CLOWN74>();
             cl.enabled = true;
         }
@@ -44,6 +45,7 @@ public class Mag : MonoBehaviour
             A = false;
             //rb.isKinematic = false;
             rb.constraints = RigidbodyConstraints.None;
+            this.tag = "Mag";
             transform.parent = null;
         }
 
