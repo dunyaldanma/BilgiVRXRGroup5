@@ -43,7 +43,7 @@ public class SwordSlash : MonoBehaviour
     {
         this.transform.parent = null;
     }
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -57,5 +57,5 @@ public class SwordSlash : MonoBehaviour
 
             }
         }
-    }
+    }*/
 }
