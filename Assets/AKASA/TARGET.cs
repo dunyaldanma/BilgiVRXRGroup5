@@ -18,7 +18,7 @@ public class TARGET : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         x += 1;
-        if (x > 10)
+        if (x > 25)
         {
             Destroy(gameObject);
         }

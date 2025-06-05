@@ -11,9 +11,9 @@ public class M1911 : MonoBehaviour
     bool onTarget;
     float miliseconds;
 
-    [SerializeField] LineRenderer rayLine;
-    [SerializeField] Transform rayEnd;
-    [SerializeField] GameObject bulletHolePrefab;
+    //[SerializeField] LineRenderer rayLine;
+    //[SerializeField] Transform rayEnd;
+    //[SerializeField] GameObject bulletHolePrefab;
     [SerializeField] GameObject muzzle;
     [SerializeField] AudioClip Shoot;
 
@@ -35,13 +35,13 @@ public class M1911 : MonoBehaviour
             Debug.Log("Did Hit");
             onTarget = true;
 
-            if (bulletHolePrefab != null && hitAmount > 0)
-            {
-                GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
-                hole.transform.position += hole.transform.forward * 0.001f;
-                hole.transform.SetParent(hit.collider.transform);
-                hitAmount--;
-            }
+            //if (bulletHolePrefab != null && hitAmount > 0)
+            //{
+                //GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                //hole.transform.position += hole.transform.forward * 0.001f;
+                //hole.transform.SetParent(hit.collider.transform);
+                //hitAmount--;
+            //}
         }
         else
         {
@@ -53,15 +53,15 @@ public class M1911 : MonoBehaviour
 
     void Update()
     {
-        rayLine.enabled = true;
-        rayLine.SetPosition(0, transform.position);
-        rayLine.SetPosition(1, rayEnd.position);
+        //rayLine.enabled = true;
+        //rayLine.SetPosition(0, transform.position);
+        //rayLine.SetPosition(1, rayEnd.position);
 
         miliseconds += Time.deltaTime * 1000;
 
-        if (miliseconds > 500)
+        if (miliseconds > 100)
         {
-            miliseconds -= 500;
+            miliseconds -= 100;
             if (onTarget)
             {
                 hitAmount++;

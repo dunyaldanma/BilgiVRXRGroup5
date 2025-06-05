@@ -9,6 +9,7 @@ public class CLOWN74 : MonoBehaviour
     public float impactF = 30f;
     public float fireR = 15f;
     private float nTTF = 0f;
+    [SerializeField] GameObject M1911;
 
 
     public bool controllerActive = false, isHeld = false;
@@ -80,7 +81,7 @@ public class CLOWN74 : MonoBehaviour
     void Shooting()
     {
         if (!isHeld) 
-        { 
+        {
             return; 
         }
         else
@@ -88,6 +89,7 @@ public class CLOWN74 : MonoBehaviour
             float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
                     if(triggerValue > 0.1f && Time.time >= nTTF && bulletAmount > 0)
                     {
+                        M1911.SetActive(true);        
                         bulletAmount--;
                         mbc.CurrentBullet(bulletAmount);
                         nTTF = Time.time + 1f / fireR;
@@ -97,6 +99,7 @@ public class CLOWN74 : MonoBehaviour
                         mzz2.Play();
                         Debug.Log("bruhmoment");    
                     }
+                    else { M1911.SetActive(false); }
         }
         
     }
@@ -126,7 +129,7 @@ public class CLOWN74 : MonoBehaviour
         if (magg.transform.childCount == 0f)
         {
             bulletAmount = 0;
-            this.enabled = false;
+            //this.enabled = false;
         }
         Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
         if (rb.isKinematic)
