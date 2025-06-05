@@ -9,9 +9,10 @@ public class CLOWN74 : MonoBehaviour
     public float impactF = 30f;
     public float fireR = 15f;
     private float nTTF = 0f;
+    //[SerializeField] GameObject M1911;
 
 
-    public bool controllerActive = false;
+    public bool controllerActive = false, isHeld = false, isShooting = false;
 
     LayerMask layerMask;
     AudioSource audioSource;
@@ -25,8 +26,8 @@ public class CLOWN74 : MonoBehaviour
     [SerializeField] Transform rayEnd;
     //[SerializeField] GameObject bulletHolePrefab;
     [SerializeField] GameObject muzzle;
-    [SerializeField] GameObject M1911;
     [SerializeField] AudioClip Shoot;
+    [SerializeField] AudioSource ShootSource;
     public MagBulletCount mbc;
     int hitAmount = 0;
     public int bulletAmount;
@@ -35,7 +36,7 @@ public class CLOWN74 : MonoBehaviour
     void Awake()
     {
         layerMask = LayerMask.GetMask("Target");
-        muzzle.SetActive(false);
+        //muzzle.SetActive(false);
         audioSource = GetComponent<AudioSource>();
         childcountx = magg.transform.childCount;
     }
@@ -61,13 +62,13 @@ public class CLOWN74 : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * impactF);
             }
             */
-            //if (bulletHolePrefab != null && hitAmount > 0)
-            //{
-               // GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
-               //hole.transform.position += hole.transform.forward * 0.001f;
-               // hole.transform.SetParent(hit.collider.transform);
-               // hitAmount--;
-            //}
+            /*if (bulletHolePrefab != null && hitAmount > 0)
+            {
+                GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                hole.transform.position += hole.transform.forward * 0.001f;
+                hole.transform.SetParent(hit.collider.transform);
+                hitAmount--;
+            }*/
         }
         else
         {
@@ -80,27 +81,41 @@ public class CLOWN74 : MonoBehaviour
 
     void Shooting()
     {
-        if (!controllerActive) { return; }
-        float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
-        if (triggerValue > 0.1f && Time.time >= nTTF && bulletAmount > 0)
+        if (!isHeld)
         {
-            M1911.SetActive(true);
-            bulletAmount--;
-            mbc.CurrentBullet(bulletAmount);
-            nTTF = Time.time + 1f / fireR;
-            ShootReal();
-            Debug.Log("bruhmoment");
+            return;
         }
-        else {        
-            M1911.SetActive(false);
+        else
+        {
+            if (bulletAmount  > 0)
+            {
+                isShooting = true;
+            }
+            float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+            if (triggerValue > 0.1f && Time.time >= nTTF && bulletAmount > 0)
+            {
+                //M1911.SetActive(true);
+                bulletAmount--;
+                mbc.CurrentBullet(bulletAmount);
+                nTTF = Time.time + 1f / fireR;
+                ShootReal();
+
+                StartCoroutine(FlashMuzzle());
+                ShootSource.clip = Shoot;
+                ShootSource.Play();
+                BulletCreator();
+                Debug.Log("bruhmoment");
+            }
+            else {  }
         }
+
     }
     private void ShootReal()
     {
 
 
         RaycastHit Hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward * -1), out Hit, Range))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward * -1), out Hit, Range, layerMask))
         {
             EnemyHp enemyHp = Hit.transform.GetComponent<EnemyHp>();
             if (enemyHp != null)
@@ -121,10 +136,18 @@ public class CLOWN74 : MonoBehaviour
         if (magg.transform.childCount == 0f)
         {
             bulletAmount = 0;
-            this.enabled = false;
+            //this.enabled = false;
         }
+        Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
+        if (rb.isKinematic)
+        {
+            isHeld = true;
+        }
+        else
+        { isHeld = false; }
         Shooting();
-        rayLine.enabled = true;
+        //M1911.SetActive(isShooting);
+        rayLine.enabled = isShooting;
         rayLine.SetPosition(0, transform.position);
         rayLine.SetPosition(1, rayEnd.position);
 
@@ -142,7 +165,7 @@ public class CLOWN74 : MonoBehaviour
                 projectile = Instantiate(bullet, transform.position, transform.rotation);
                 projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
                 mbc.CurrentBullet(bulletAmount);
-                StartCoroutine(FlashMuzzle());
+                //StartCoroutine(FlashMuzzle());
                 StartCoroutine(SoundFX());
             }
             else
@@ -156,10 +179,23 @@ public class CLOWN74 : MonoBehaviour
     }
 
 
-    private IEnumerator FlashMuzzle()
+    /*private IEnumerator FlashMuzzle()
     {
         muzzle.SetActive(true);
         yield return new WaitForSeconds(0.9f);
+        muzzle.SetActive(false);
+    }*/
+    void BulletCreator()
+    {
+        GameObject projectile;
+        projectile = Instantiate(bullet, transform.position, transform.rotation);
+        projectile.GetComponent<Rigidbody>().linearVelocity = transform.TransformDirection(Vector3.forward * -100.0f);
+    }
+
+    private IEnumerator FlashMuzzle()
+    {
+        muzzle.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
         muzzle.SetActive(false);
     }
 
