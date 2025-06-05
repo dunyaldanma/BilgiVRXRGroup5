@@ -13,6 +13,10 @@ TagManager:
   - Climbable
   - Gun
   - Plank
+  - CinemachineTarget
+  - Sword
+  - Mag
+  - MagInPlace
   layers:
   - Default
   - TransparentFX
@@ -21,8 +25,8 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
+  - Ragdoll
+  - Mag
   - 
   - 
   - 

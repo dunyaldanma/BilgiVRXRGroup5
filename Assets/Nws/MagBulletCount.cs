@@ -6,11 +6,11 @@ public class MagBulletCount : MonoBehaviour
     public int magMinbullet = 0;
     public int magBullet;
 
-    CLOWN74 cl;
+    [SerializeField] CLOWN74 cl;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cl = GetComponentInParent<CLOWN74>();
+        cl = this.transform.parent.GetComponentInParent<CLOWN74>();
         if (cl == null) return;
         cl.enabled = true;
         magBullet = magMaxbullet;

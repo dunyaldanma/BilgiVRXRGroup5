@@ -12,15 +12,19 @@ public class TARGET : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        x += 1;
-        if (x > 10)
+        if (collision.gameObject.CompareTag("Gun"))
         {
-            Destroy(gameObject);
+            x += 1;
+                    if (x > 25)
+                    {
+                        Destroy(gameObject);
+                    }
         }
+        
     }
 }

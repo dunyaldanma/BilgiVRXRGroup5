@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4626701394555382420}
   - component: {fileID: 6198293825534875238}
   - component: {fileID: 8927115743567925907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MAG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,14 +159,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641591668867029227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afe92a1bd981a5c488bfe2e1ddda412d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   magMaxbullet: 30
   magMinbullet: 0
-  magBullet: 0
+  magBullet: 30
+  cl: {fileID: 0}
 --- !u!1 &8891775086500764358
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ GameObject:
   - component: {fileID: 6211337169065545123}
   - component: {fileID: 1759680666427807427}
   - component: {fileID: 9088633551866786429}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '[BuildingBlock] HandGrab'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
