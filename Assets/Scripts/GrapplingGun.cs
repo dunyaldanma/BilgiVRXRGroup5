@@ -25,11 +25,12 @@ public class GrapplingGun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        float triggerValue = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
+        if (Input.GetMouseButtonDown(1) || triggerValue > 0.1f)
         {
             StartGrapple();
         }
-        else if (Input.GetMouseButtonUp(1))
+        else
         {
             StopGrapple();
         }
