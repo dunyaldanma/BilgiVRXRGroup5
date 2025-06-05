@@ -76,18 +76,18 @@ Material:
     - _Dirt_Blend: 0.976
     - _Dirt_Height: 0.808
     - _Edge_Sharpness: 1
-    - _Emission: 0
-    - _Emission_Tiling: 1
-    - _Metallic: 0.5
-    - _Metallic_Tiling: 1
+    - _Emission: 1
+    - _Emission_Tiling: 12
+    - _Metallic: 1
+    - _Metallic_Tiling: 12
     - _Offset: 1.39
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.414
+    - _Smoothness: 1
     - _Tiling: 1
     m_Colors:
     - _Dirt_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emission_Color: {r: 0, g: 4, b: 0, a: 0}
     - _Side_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
     - _Side_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Top_Color: {r: 0.41966313, g: 0.5754717, b: 0, a: 1}

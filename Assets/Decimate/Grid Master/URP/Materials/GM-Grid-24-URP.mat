@@ -119,7 +119,7 @@ Material:
     - _Dirt_Height: 0.5
     - _DstBlend: 0
     - _Edge_Sharpness: 20
-    - _Emission: 0
+    - _Emission: 1
     - _Emission_Map_Multiplier: 1
     - _Emission_Tiling: 1
     - _Metallic: 0.5
@@ -144,7 +144,7 @@ Material:
     - _Base_Color_Top: {r: 0.30980393, g: 0.26666668, b: 0.92156863, a: 1}
     - _Base_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Dirt_Color: {r: 0.18592346, g: 0.07008722, b: 0.33018863, a: 0}
-    - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emission_Color: {r: 0, g: 0.07517433, b: 4, a: 0}
     - _Offset: {r: 1, g: 0.5, b: 0, a: 0}
     - _Side_Color: {r: 1, g: 0.627451, b: 0, a: 1}
     - _Side_Offset: {r: 0, g: 0, b: 0, a: 0}

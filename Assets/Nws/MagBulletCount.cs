@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Reflection;
 
 public class MagBulletCount : MonoBehaviour
 {
@@ -7,20 +8,32 @@ public class MagBulletCount : MonoBehaviour
     public int magBullet;
 
     [SerializeField] CLOWN74 cl;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private MethodInfo bulletCheckMethod;
+
     void Start()
     {
         cl = this.transform.parent.GetComponentInParent<CLOWN74>();
         if (cl == null) return;
+
+        // BulletCheck metodunu yansýma ile arýyoruz
+        bulletCheckMethod = cl.GetType().GetMethod("BulletCheck", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+        if (bulletCheckMethod == null)
+        {
+            Debug.LogWarning("CLOWN74 içinde BulletCheck metodu yok!");
+            return;
+        }
+
         cl.enabled = true;
         magBullet = magMaxbullet;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (cl == null) return;
-        cl.BulletCheck(magBullet);
+        if (cl == null || bulletCheckMethod == null) return;
+
+        bulletCheckMethod.Invoke(cl, new object[] { magBullet });
+
         if (magBullet == 0)
         {
             cl.enabled = false;
