@@ -17,10 +17,14 @@ public class TARGET : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        x += 1;
-        if (x > 25)
+        if (collision.gameObject.CompareTag("Gun"))
         {
-            Destroy(gameObject);
+            x += 1;
+                    if (x > 25)
+                    {
+                        Destroy(gameObject);
+                    }
         }
+        
     }
 }
