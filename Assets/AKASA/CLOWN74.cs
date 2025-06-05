@@ -23,7 +23,7 @@ public class CLOWN74 : MonoBehaviour
 
     [SerializeField] LineRenderer rayLine;
     [SerializeField] Transform rayEnd;
-    [SerializeField] GameObject bulletHolePrefab;
+    //[SerializeField] GameObject bulletHolePrefab;
     [SerializeField] GameObject muzzle;
     [SerializeField] GameObject M1911;
     [SerializeField] AudioClip Shoot;
@@ -61,13 +61,13 @@ public class CLOWN74 : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * impactF);
             }
             */
-            if (bulletHolePrefab != null && hitAmount > 0)
-            {
-                GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
-                hole.transform.position += hole.transform.forward * 0.001f;
-                hole.transform.SetParent(hit.collider.transform);
-                hitAmount--;
-            }
+            //if (bulletHolePrefab != null && hitAmount > 0)
+            //{
+               // GameObject hole = Instantiate(bulletHolePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+               //hole.transform.position += hole.transform.forward * 0.001f;
+               // hole.transform.SetParent(hit.collider.transform);
+               // hitAmount--;
+            //}
         }
         else
         {
@@ -91,8 +91,7 @@ public class CLOWN74 : MonoBehaviour
             ShootReal();
             Debug.Log("bruhmoment");
         }
-        else
-        {
+        else {        
             M1911.SetActive(false);
         }
     }
