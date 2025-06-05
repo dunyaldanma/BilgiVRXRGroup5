@@ -59,9 +59,9 @@ public class M1911 : MonoBehaviour
 
         miliseconds += Time.deltaTime * 1000;
 
-        if (miliseconds > 500)
+        if (miliseconds > 100)
         {
-            miliseconds -= 500;
+            miliseconds -= 100;
             if (onTarget)
             {
                 hitAmount++;
